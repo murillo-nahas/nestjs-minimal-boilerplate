@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   postgres:
-    container_name: nestjs-boilerplate
-    image: bitnami/postgresql:latest
+    container_name: nestjs-boilerplate-postgres
+    image: postgres:17
     ports:
       - 5432:5432
     environment:
@@ -11,4 +11,8 @@ services:
       POSTGRES_PASSWORD: nestjs-boilerplate
       POSTGRES_DB: nestjs-boilerplate_db
     volumes:
-      - polls_pg_data:/bitnami/postgresql
+      - nestjs_boilerplate_pg_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  nestjs_boilerplate_pg_data:
