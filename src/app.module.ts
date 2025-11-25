@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
+import { CatsModule } from './modules/cats/cats.module';
+import { PrismaService } from './prisma/prisma.service';
 
 @Module({
   imports: [
@@ -8,8 +10,9 @@ import { envSchema } from './env';
       isGlobal: true,
       validate: (env) => envSchema.safeParse(env),
     }),
+    CatsModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [PrismaService],
 })
 export class AppModule {}
