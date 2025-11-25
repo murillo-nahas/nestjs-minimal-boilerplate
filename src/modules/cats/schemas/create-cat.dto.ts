@@ -1,3 +1,4 @@
+import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
 
 export const createCatDTO = z.object({
@@ -7,3 +8,5 @@ export const createCatDTO = z.object({
 });
 
 export type CreateCatDTO = z.infer<typeof createCatDTO>;
+
+export class CreateCatSwaggerDTO extends createZodDto(createCatDTO) {}

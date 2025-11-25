@@ -1,3 +1,4 @@
+import { createZodDto } from 'nestjs-zod';
 import z from 'zod';
 
 export const catDTO = z.object({
@@ -5,8 +6,8 @@ export const catDTO = z.object({
   name: z.string(),
   age: z.number(),
   breed: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
 });
 
 export type CatDTO = z.infer<typeof catDTO>;
+
+export class CatResponseDTO extends createZodDto(catDTO) {}
